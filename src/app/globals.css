@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+
+    scroll-behavior: smooth !important;
+}
+
+
+body {
+    font-family: "Urbanist", sans-serif !important;
+    font-display: swap !important;
+}
+
+input:-webkit-autofill {
+    -webkit-background-clip: black !important;
+    -webkit-text-fill-color: #5b5862 !important;
+    background-color: black !important;
+    -webkit-transition: background-color 5000s ease-in-out 0s !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    @apply bg-light-blue !important;
+}
