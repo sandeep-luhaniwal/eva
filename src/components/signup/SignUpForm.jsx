@@ -25,13 +25,11 @@ const SignUpForm = () => {
   const router = useRouter();
   const session = useSession();
 
-  // Handle Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" }); // Clear error when user types
+    setErrors({ ...errors, [e.target.name]: "" }); 
   };
 
-  // Validation Function
   const validateForm = () => {
     let newErrors = {};
 
@@ -60,7 +58,7 @@ const SignUpForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle Submit
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -74,7 +72,7 @@ const SignUpForm = () => {
     } else {
       setMessage("Account created successfully!");
       router.push("/login");
-      setFormData({ name: "", number: "", email: "", password: "", confirmPassword: "" }); // Reset form
+      setFormData({ name: "", number: "", email: "", password: "", confirmPassword: "" }); 
     }
   };
 

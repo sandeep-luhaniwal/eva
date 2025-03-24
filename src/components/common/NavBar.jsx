@@ -63,7 +63,7 @@ const NavBar = () => {
                                     onClick={handleLogout}
                                     className='py-3.5 group md:py-4 mx-auto font-medium px-4 md:px-[34px] text-base md:text-[17px] leading-none text-parsley bg-light-yellow rounded-[20px] hover:bg-light-blue hover:text-white duration-300 flex items-center gap-1.5'
                                 >
-                                    Logout
+                                    Logout <span className='duration-300 group-hover:translate-x-3'><ArrowIcon /></span>
                                 </button>
                             )}
                         </div>
