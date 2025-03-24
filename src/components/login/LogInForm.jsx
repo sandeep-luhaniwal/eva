@@ -15,25 +15,22 @@ const LogInForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
-    // Handle Input Change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        setErrors({ ...errors, [name]: '' }); // Clear error when user types
+        setErrors({ ...errors, [name]: '' }); 
     };
 
-    // Check if the input starts with a digit (6-9) and is likely a mobile number
     const isMobileNumber = /^[6-9]/.test(formData.emailOrNumber);
 
-    // Validation Function
     const validateForm = () => {
         let newErrors = {};
 
         if (!formData.emailOrNumber) {
             newErrors.emailOrNumber = "Email or mobile number is required.";
         } else if (
-            !/\S+@\S+\.\S+/.test(formData.emailOrNumber) && // Check for valid email
-            !/^[6-9][0-9]{9}$/.test(formData.emailOrNumber) // Check for valid 10-digit mobile number
+            !/\S+@\S+\.\S+/.test(formData.emailOrNumber) && 
+            !/^[6-9][0-9]{9}$/.test(formData.emailOrNumber) 
         ) {
             newErrors.emailOrNumber = "Invalid email or mobile number format.";
         }
@@ -46,14 +43,13 @@ const LogInForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    // Handle Form Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
 
         try {
             const payload = {
-                emailOrNumber: formData.emailOrNumber, // Send email or mobile number
+                emailOrNumber: formData.emailOrNumber, 
                 password: formData.password
             };
 
@@ -63,7 +59,6 @@ const LogInForm = () => {
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("user", JSON.stringify(res.data.user));
                 
-                // Dispatch a custom event to notify other components
                 window.dispatchEvent(new Event("authChange"));
             
                 router.push("/dashboard");
@@ -82,12 +77,10 @@ const LogInForm = () => {
                             <h1 className='text-[#100F14] font-semibold text-3xl leading-none'>Welcome back!</h1>
                             <p className='pt-0.5 text-[#49475a] text-xs leading-none'>Login to access all your data</p>
 
-                            {/* Login Form */}
+                          
                             <form className='flex flex-col pt-4 lg:pt-6 xl:pt-8' onSubmit={handleSubmit}>
-                                {/* Email or Mobile Number Field */}
                                 <label className='text-[#9794AA] font-medium pb-0.5' htmlFor="emailOrNumber">Email or Mobile Number</label>
                                 <div className="relative">
-                                    {/* Show +91 prefix if the input starts with a digit (6-9) */}
                                     {isMobileNumber && (
                                         <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#686677]">
                                             +91
@@ -107,7 +100,6 @@ const LogInForm = () => {
                                 </div>
                                 {errors.emailOrNumber && <small className="text-red-500">{errors.emailOrNumber}</small>}
 
-                                {/* Password Field */}
                                 <label className='text-[#9794AA] pb-0.5 font-medium pt-4' htmlFor="password">Password</label>
                                 <div className='relative'>
                                     <input
@@ -128,10 +120,8 @@ const LogInForm = () => {
                                 </div>
                                 {errors.password && <small className="text-red-500">{errors.password}</small>}
 
-                                {/* Form Error Message */}
                                 {errors.form && <small className="text-red-500 mt-2">{errors.form}</small>}
 
-                                {/* Submit Button */}
                                 <input
                                     type="submit"
                                     className='text-sm font-medium mt-6 rounded-[14px] py-3 bg-light-blue duration-300 hover:bg-light-yellow cursor-pointer lg:py-3.5'
@@ -139,7 +129,6 @@ const LogInForm = () => {
                                 />
                             </form>
 
-                            {/* Register Link */}
                             <p className='pt-4 lg:pt-6 text-xs tracking-wide text-center text-dark-gray font-bold'>
                                 Don’t have an account?{" "}
                                 <Link className='text-[#3548AA] hover:text-light-blue duration-300' href={"/signup"}>
@@ -148,7 +137,6 @@ const LogInForm = () => {
                             </p>
                         </div>
 
-                        {/* Login Image */}
                         <div className='hidden md:flex md:ps-6 lg:ps-0'>
                             <Image
                                 src={"/assets/images/png/login-bg-img.png"}

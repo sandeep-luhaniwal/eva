@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = () => {
     return (
-        <div className=' min-h-screen flex justify-center flex-col items-center'>
+        <div className=' min-h-[60vh] flex justify-center flex-col items-center'>
             <DashboardData />
         </div>
     )
